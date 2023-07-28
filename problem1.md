@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
  
-In this question, the user will input a positive number and you need to find the lucky day of the week corresponding to that number.
+The user will input a positive number and you need to find the lucky day of the week corresponding to that number.
 
 #### Example:
 
