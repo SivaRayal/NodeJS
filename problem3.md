@@ -2,9 +2,10 @@
 
 ## Description
 
-Write a function to read the content of file named 'userdata.txt' . Count the words 'leave' and 'absent' and store it in a file called 'analysis.txt'
+Write a function to read the content from a file 'userdata.txt' . Count the occurence of words 'leave' and 'absent' and store it in a file called 'analysis.txt'
 
-Use Node Streams to read/write data
+#### Note 
+    Use Node Streams to read/write data
 
 
 ### Sample
@@ -13,6 +14,6 @@ Use Node Streams to read/write data
      Rahul is on leave today. Ruth is absent for 4 days
 
     analysis.txt
-     leave:1 , absent : 4
+     leave:1 , absent : 1
 
     
