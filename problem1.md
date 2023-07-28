@@ -7,12 +7,12 @@ The user will input a positive number and you need to find the lucky day of the 
 ### Activities
 
     Need to design HTML page named index.html  
-    Send details to index.js 
-    Use http server and retrives the data. 
-    Send the response back to html page and display 
+    Load Index.html using http server in index.js file
+    Retrive the data from html and build logic in index.js
+    View the response in html page
 
 
-#### Example:
+#### Sample logic:
 
 Input :
 0
