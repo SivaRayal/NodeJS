@@ -26,10 +26,14 @@ Explanation:
 
 You Need to design HTML page named index.html  and send the details to index.js which is using http server and retrives the data. We need to send the response back to html page and display the same
 
+### Note:
+    •	Input element has an Id of 'number'.
+    •	Submit Button 
+    •	Your output should be displayed in the div with id of 'display'.
+
+
+
 Sample view:
 ![output](./screenshots/form.png)
  
-Note:
-•	Input element has an Id of 'number'.
-•	Submit Button 
-•	Your output should be in the id of 'para'.
+
