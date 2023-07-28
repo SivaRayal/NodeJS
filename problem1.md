@@ -1,15 +1,34 @@
+# Problme : Lucky day
 
-# DESCRIPTION
-### Problem Statement
+## DESCRIPTION
+ 
+In this question, the user will input a positive number and you need to find the lucky day of the week corresponding to that number.
 
-Write a function fixage that receives an array of integers. The integers represent ages between 0 and 100. The function is required to join all the integers that are between 18 and 60 into a string separated with a comma and returns it. If there is no integer between 18 and 60, then the function returns "NA".
+#### Example:
 
-#### Sample Input 1
-[5,15,25,78,59,45]
-#### Sample Output 1
-25,59,45
-#### Sample Input 2
-[1,3,3,2,11,6]
-#### Sample Output 2
- NA
+Input :
+0
 
+Output :
+Monday
+
+Explanation:
+•	"Monday" is the Zeroth day of the week.
+
+Input :
+1000
+
+Output :
+Sunday
+
+Explanation:
+•	"Sunday" is the Sixth day of the week and 1000 modulo 7 equals 6.
+
+You Need to design HTML page named index.html  and send the details to index.js which is using http server and retrives the data. We need to send the response back to html page and display the same
+
+Sample view:
+ 
+Note:
+•	Input element has an Id of 'number'.
+•	Submit Button 
+•	Your output should be in the id of 'para'.
