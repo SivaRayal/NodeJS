@@ -1,0 +1,31 @@
+a {
+    font-family: "Trirong", sans-serif;
+}
+
+.italics {
+    font-style: italic;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.ribbon {
+    background:darkorchid;
+    position:relative;
+    width:100%;
+}
+
+.centereddiv {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.outsec {
+    margin-top: 5%;
+}
