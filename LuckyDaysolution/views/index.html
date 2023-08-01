@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,12 +19,11 @@
         a {
             font-family: "Trirong", sans-serif;
         }
-
+        
         .italics {
             font-style: italic;
         }
-
-
+        
         footer {
             position: fixed;
             left: 0;
@@ -31,26 +31,29 @@
             width: 100%;
             text-align: center;
         }
-
+        
         .ribbon {
-            background:darkorchid;
-            position:relative;
-            width:100%;
+            background: darkorchid;
+            position: relative;
+            width: 100%;
         }
-
+        
         .centereddiv {
             margin-top: 10%;
             margin-bottom: 10%;
         }
-
+        
         .outsec {
             margin-top: 5%;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <section class="text-center"> <h1> Lucky Day Finder</h1></section>
+        <section class="text-center">
+            <h1> Lucky Day Finder</h1>
+        </section>
     </header>
     <main>
         <section class="centereddiv">
@@ -63,51 +66,52 @@
             <div class="text-center outsec" style="background-color: blanchedalmond; height: 10%; display: hidden;" id="response">
             </div>
         </section>
-        
+
     </main>
     <footer>
         <div class="text-center text-white ribbon">
             <div class="container pt-3">
                 <!-- Section: Social media -->
                 <section class="mb-2">
-                  <!-- Linkedin -->
-                  <a class="btn btn-link btn-floating btn-lg text-white" href="https://linkedin.com/in/siva-kuruva-b3b618109" role="button"><i class="bi bi-linkedin"></i></a>
-                  
-                  <!-- Github -->
-                  <a class="btn btn-link btn-floating btn-lg text-white" href="https://github.com/SivaRayal" role="button"><i class="bi bi-github"></i></a>
+                    <!-- Linkedin -->
+                    <a class="btn btn-link btn-floating btn-lg text-white" href="https://linkedin.com/in/siva-kuruva-b3b618109" role="button"><i class="bi bi-linkedin"></i></a>
 
-                  <!-- Facebook -->
-                  <a class="btn btn-link btn-floating btn-lg text-white" href="https://www.facebook.com/madhava.siva" role="button"><i class="bi bi-facebook"></i></a>
+                    <!-- Github -->
+                    <a class="btn btn-link btn-floating btn-lg text-white" href="https://github.com/SivaRayal" role="button"><i class="bi bi-github"></i></a>
+
+                    <!-- Facebook -->
+                    <a class="btn btn-link btn-floating btn-lg text-white" href="https://www.facebook.com/madhava.siva" role="button"><i class="bi bi-facebook"></i></a>
                 </section>
                 <!-- Section: Social media -->
-              </div>
+            </div>
             <p>© 2023 Copyright - Created by Sivasai.kuruva AKA SivaRayal. </p>
         </div>
     </footer>
     <script>
-        async function submitNum(){
+        async function submitNum() {
             event.preventDefault();
             const num = document.getElementById('searchNum').value;
             const luckyDayDiv = document.getElementById('response');
-            let data={
-				"num":num.toString()
+            let data = {
+                "num": num.toString()
             }
-            try{
-                const resp=await fetch("/getLucyDay", {
-                    method:"POST",
-                    body:num
+            try {
+                const resp = await fetch("/getLucyDay", {
+                    method: "POST",
+                    body: num
                 });
-                
-                if(!resp.ok){
+
+                if (!resp.ok) {
                     throw new Error("Failed request at submitNum()");
                 }
-                
+
                 const day = await resp.text();
-                luckyDayDiv.textContent='Your Luck Day is - '+day;
-            }catch(err){
-                luckyDayDiv.textContent='Error Caught - submitNum()'+err.message;
+                luckyDayDiv.textContent = 'Your Luck Day is - ' + day;
+            } catch (err) {
+                luckyDayDiv.textContent = 'Error Caught - submitNum()' + err.message;
             }
         }
     </script>
 </body>
+
 </html>
