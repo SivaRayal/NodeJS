@@ -42,6 +42,6 @@ Explanation:
 
 
 Sample view:
-![output](./screenshots/form.png)
+![output](screenshotsorm.png)
  
 
