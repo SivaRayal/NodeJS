@@ -11,4 +11,14 @@ function mulNums(n1,n2){
     return n1*n2;
 }
 
-module.exports={subNums,mulNums}
+//module.exports={subNums,mulNums}
+
+//export function sqNum(n1){
+//    return n1*n1;
+//}
+
+exports.modNum = (n1,n2)=>{
+    return n1%n2;
+}
+
+module.exports={subNums,mulNums, ...exports}
