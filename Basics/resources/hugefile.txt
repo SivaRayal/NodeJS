@@ -1,0 +1,73 @@
+Hi there.
+Todays Notes :
+Node JS - Ness
+==============
+
+
+Day 04 :
+========
+Node JS
+	single threaded
+	event loop -- manage internal C++ thread pool
+	Can create worker threads ( chaild Threads)
+		Spawn, fork, ..
+	Scalability, huge data(streams)
+	Clustr module -- load balancing
+	logging modules -- banyan, winston
+	Common module, ES6 module
+		import and export (.mjs)
+		require and module.exports (.js)
+		
+Streams
+	Readable
+	Writable
+	Duplex
+	Transform streams
+	
+	Readable stream :
+		client is sending request to the server. POST - create a resource - send some data as part of request body. -- payload
+		Server have to read the payload from request body -- Read Stream. ( multiple chunks of data )
+		
+		Events triggered :
+			data ( chunks of data is reciver )
+			end ( entire data has been read )
+			close
+			error
+			readable ( manually work with various chunks of data )
+		
+		Handle the events :
+			Associate the various events with their corresponding event handlers.
+			on
+			once
+			appendListener
+	
+	Writable stream :
+		Write into the stream
+			write()
+			call it multiple times
+			write multiple chunks
+		
+		Indicate the finish of writing
+			end()
+			once
+			close - implicit close the stream
+				Cannot write after end.
+				
+		Events :
+			error
+			
+	Duplex stream
+		Write and read to the same stream.
+		Eg - chat apps,
+		
+	Transform stream
+		Transformation of chunk in the stream.
+		Eg - zip files to send over email
+		
+
+Chunk
+	Deafult size
+	Can be configurable.
+	
+
+		

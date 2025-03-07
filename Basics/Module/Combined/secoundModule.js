@@ -1,4 +1,4 @@
-var firstModule=require('./firstModule');
+var firstModule=require('./firstModule.js');
 var res=firstModule.addNums(50,49);
 console.log("Result : "+res);
 

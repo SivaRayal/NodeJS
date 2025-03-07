@@ -1,4 +1,5 @@
-const {Buffer} = require('buffer');
+// Buffer is global module dosent required to import.
+
 let buf= Buffer.alloc(10);
 let str="Hi";
 buf.write(str);
