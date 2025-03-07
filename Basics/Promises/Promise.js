@@ -25,6 +25,6 @@ function migrate(file1,file2,migrationFile){
 
 
 
-migrate(path.join(__dirname,"../resources/text1.txt"),path.join(__dirname,"../resources/text2.txt.txt"),path.join(__dirname,"../resources/MigratedFile.txt"));
+migrate(path.join(__dirname,"../resources/text1.txt"),path.join(__dirname,"../resources/text2.txt"),path.join(__dirname,"../resources/MigratedFile.txt"));
 
 
