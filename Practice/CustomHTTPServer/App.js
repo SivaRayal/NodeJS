@@ -17,9 +17,9 @@ const server=http.createServer((req,resp)=>{
 
     // users 
     if(req.method=='GET' && req.url=='/api/users' ){
-        resp.writeHead(200,{'content-type':'plain/text'});
-        resp.write(JSON.stringify(usersDB));
-        resp.end();
+        resp.writeHead(200,{'content-type':'text/html'});
+        //resp.write(JSON.stringify(usersDB));
+        resp.end(JSON.stringify(usersDB));
     }
 
     if(req.method=='POST' && req.url=='/api/addUser'){
