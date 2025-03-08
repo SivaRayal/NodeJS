@@ -12,13 +12,13 @@ function migrate(file1,file2,migrationFile){
             return fs.promises.readFile(file2);
         }).then((data2)=>{
             migration+='\n'+data2.toString();
-        }).then(()=>{
             fs.promises.writeFile(migrationFile,migration,(err)=>{
-                if(err)
-                    console.log("Error in writing file");
-                else
-                    console.log("Migration Sucessfull");
-        })}).catch((err)=>{
+            if(err)
+                console.log("Error in writing file");
+            else
+                console.log("Migration Sucessfull");
+        })
+        }).catch((err)=>{
             console.log("Error in migrating file");
         })
 }
