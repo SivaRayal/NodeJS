@@ -9,80 +9,110 @@ var usersDB=[
     { id: 4, name: "Prakash", email: "prakash@mycompany.com" }
 ];
 
-const server=http.createServer((req,resp)=>{
-    if(req.method=='GET' && req.url=='/'){
+// Custom Middleware
+const myloggingMiddleware=(req,resp,next)=>{
+    let data="";
+    req.on('data',(chunk)=>{
+        data+=chunk.toString();
+    })
+    req.on('end',()=>{
+        console.log(`Incomming request logged : ${data}`);
+    })
+    req.on('error',()=>{
+        console.log(`Error in loggin request`);
+    })
+    next();
+}
+
+// Request Handler
+const requestHandler=(req,resp)=>{
+    if(req.method==='GET' && req.url==='/'){
         resp.writeHead(200,{'content-type':'text/html'});
-        resp.end("Welcome to the Custom HTTP Server");
+        resp.end("<html><body><h1>Welcome to the Custom HTTP Server</h1></body></html>");
     }
 
     // users 
-    if(req.method=='GET' && req.url=='/api/users' ){
-        resp.writeHead(200,{'content-type':'text/html'});
-        //resp.write(JSON.stringify(usersDB));
-        resp.end(JSON.stringify(usersDB));
+    else if(req.method==='GET' && req.url==='/api/users' ){
+        resp.writeHead(200,{'content-type':'application/json'});
+        resp.write(JSON.stringify(usersDB));
+        resp.end();
     }
 
-    if(req.method=='POST' && req.url=='/api/addUser'){
+    else if(req.method==='POST' && req.url==='/api/users'){
         console.log('Adding user to internal userDB');
         let data="";
         req.on('data',(chunk)=>{
-            data+=chunk;
+            data+=chunk.toString();
         })
         req.on('end',()=>{
-            console.log(data);
-            usersDB.push(data);
+            usersDB.push(JSON.parse(data));
             resp.writeHead(201,{'content-type':'text/html'});
             resp.end("User Registration - Success");
         })
         req.on('error',()=>{
-            resp.writeHead(404,{'content-type':'plain/text'});
+            resp.writeHead(500,{'content-type':'text/html'});
             resp.end("Error while registering user");
         })
     }
 
-    if(req.method=='PUT' && req.url=='/api/updateUser'){
+    else if(req.method=='PUT' && req.url=='/api/users'){
         console.log('Update user to internal userDB')
         let data='';
         req.on('data',(chunk)=>{
             data+=chunk;
         })
         req.on('end',()=>{
-            usersDB=usersDB.map(x=>(x.id===data.id ? data:x));
-            resp.writeHead(200,{'content-type':'plain/text'});
+            usersDB=usersDB.map(x=>(x.id==JSON.parse(data).id ? JSON.parse(data):x));
+            resp.writeHead(200,{'content-type':'text/html'});
             resp.end('Updated User - Successfull');
         })
         req.on('error',()=>{
-            resp.writeHead(500,{'content-type':'plain/text'});
+            resp.writeHead(500,{'content-type':'text/html'});
             resp.end("Internal error while updating user");
         })
     }
 
-    if(req.method=='DELETE' && req.url=='/api/removeUser'){
+    else if(req.method=='DELETE' && req.url=='/api/users'){
         console.log('Remove user from userDB')
         let data='';
         req.on('data',(chunk)=>{
             data+=chunk;
         })
         req.on('end',()=>{
-            usersDB=usersDB.filter(x=>(x.id !== data.id ));
-            resp.writeHead(200,{'content-type':'plain/text'});
+            usersDB=usersDB.filter(x=>(x.id !== JSON.parse(data).id ));
+            resp.writeHead(200,{'content-type':'text/html'});
             resp.end('Removed User - Successfull');
         })
         req.on('error',()=>{
-            resp.writeHead(500,{'content-type':'plain/text'});
+            resp.writeHead(500,{'content-type':'text/html'});
             resp.end("Internal error while removing user");
         })
     }
 
 
     // files
-    if(req.method=='GET' && req.url.startsWith('/files/')){
+    else if(req.method=='GET' && req.url.startsWith('/files/')){
         let fileName=path.join(__dirname,"public",req.url.replace('/files/',""));
-        let reader=fs.createReadStream(fileName);
-        reader.pipe(res);
+        const reader = fs.createReadStream(fileName);
+        reader.on('error', (err) => {
+            resp.writeHead(404, {'content-type': 'text/html'});
+            resp.end("Page not found");
+        });
+        reader.pipe(resp);
     }
 
+    else {
+        resp.writeHead(404,{'content-type':'text/html'});
+        resp.end("Request page not found.!");
+    }
+}
+
+// create server
+const server=http.createServer((req,resp)=>{
+    myloggingMiddleware(req,resp,()=>{
+        requestHandler(req,resp);
+    });
 });
 
-server.listen(8080,'localhost');
+server.listen(3000,'localhost');
 console.log(' Custom HTTP Server is running on http://localhost:8080/')
