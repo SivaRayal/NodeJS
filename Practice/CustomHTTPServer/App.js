@@ -9,7 +9,7 @@ var usersDB=[
     { id: 4, name: "Prakash", email: "prakash@mycompany.com" }
 ];
 
-// Custom Middleware
+// Custom Middleware with out expressjs 
 const myloggingMiddleware=(req,resp,next)=>{
     let data="";
     req.on('data',(chunk)=>{
